@@ -8,6 +8,12 @@ plugins {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -31,15 +37,18 @@ tasks.register<Copy>("unzipNewrelic") {
 }
 
 dependencies {
+    // Import Spring Boot BOM for dependency management
+    implementation(platform("org.springframework.boot:spring-boot-dependencies:3.4.1"))
+
     implementation ("commons-fileupload:commons-fileupload:1.3.3")
     implementation ("org.apache.commons:commons-lang3:3.9")
     implementation ("org.apache.commons:commons-collections4:4.4")
 
-    implementation ("org.springframework.boot:spring-boot-starter-web:2.5.10") // Secure and stable
+    implementation ("org.springframework.boot:spring-boot-starter-web") // Upgraded to fix CVE-2016-1000027
 
-    // Upgrade to Log4j2 which resolves vulnerabilities found in Log4j 1.x
-    implementation ("org.apache.logging.log4j:log4j-core:2.14.1")
-    implementation ("org.apache.logging.log4j:log4j-api:2.14.1")
+    // Log4j2 required by code - version managed by Spring Boot BOM (2.24.3)
+    implementation ("org.apache.logging.log4j:log4j-core")
+    implementation ("org.apache.logging.log4j:log4j-api")
 
     // Upgrade to latest Gson version
     implementation ("com.google.code.gson:gson:2.8.9")
@@ -47,11 +56,7 @@ dependencies {
 
     implementation ("com.google.guava:guava:18.0")
 
-    implementation ("com.fasterxml.jackson.core:jackson-databind:2.8.11")
-
-    implementation ("com.fasterxml.jackson.core:jackson-core:2.8.11")
-
-    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.8.11")
+    // Jackson versions are now managed by Spring Boot dependency management (2.18.2)
 
     implementation ("commons-net:commons-net:3.6")
 
