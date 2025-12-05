@@ -2,7 +2,7 @@ import org.gradle.wrapper.Download
 
 plugins {
     id("java")
-    id("de.undercouch.download") version "5.3.0"
+    id("de.undercouch.download") version "5.6.0"
 }
 
 group = "org.example"
