@@ -1,11 +1,11 @@
 common: &default_settings
-  license_key: '<%= ENV["NEW_RELIC_LICENSE_KEY_2"] %>'
+  license_key: '<%= ENV["NEW_RELIC_LICENSE_KEY_1"] %>'
   app_name: UserMappingService
   log_level: info
   audit_mode: false
 
   labels:
-    repository: https://github.com/newrelic-copilot/UserMappingService
+    repository: github.com/newrelic-copilot/UserMappingService
     team: security_rx
     environment: production
 
