@@ -33,14 +33,16 @@ tasks.register<Copy>("unzipNewrelic") {
 }
 
 dependencies {
+    val log4jVersion = "2.17.1"
+
     implementation ("commons-fileupload:commons-fileupload:1.3.3")
     implementation ("org.apache.commons:commons-lang3:3.9")
     implementation ("org.apache.commons:commons-collections4:4.4")
 
     implementation ("org.springframework.boot:spring-boot-starter-web")
 
-    implementation ("org.apache.logging.log4j:log4j-core:2.14.1")
-    implementation ("org.apache.logging.log4j:log4j-api:2.14.1")
+    implementation ("org.apache.logging.log4j:log4j-core:$log4jVersion")
+    implementation ("org.apache.logging.log4j:log4j-api:$log4jVersion")
 
     implementation ("com.google.code.gson:gson:2.8.9")
 
