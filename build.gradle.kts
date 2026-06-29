@@ -46,14 +46,15 @@ dependencies {
 
     implementation ("com.google.guava:guava:18.0")
 
-    implementation ("com.fasterxml.jackson.core:jackson-databind")
-    implementation ("com.fasterxml.jackson.core:jackson-core")
-    implementation ("com.fasterxml.jackson.core:jackson-annotations")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.17.2")
+    implementation ("com.fasterxml.jackson.core:jackson-core:2.17.2")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.17.2")
 
     implementation ("commons-net:commons-net:3.6")
 
-    testImplementation ("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testImplementation ("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+    }
 }
 
 tasks.test {

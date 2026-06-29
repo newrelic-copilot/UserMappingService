@@ -110,7 +110,7 @@ public class Main {
     }
 
     public static void useJackson() {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = JacksonConfig.createHardenedObjectMapper();
         String jsonInput = "{\"name\":\"test\",\"value\":\"demo\"}";
         try {
             Object result = mapper.readValue(jsonInput, Object.class);
