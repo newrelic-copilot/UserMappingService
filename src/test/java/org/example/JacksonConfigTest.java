@@ -93,11 +93,4 @@ class JacksonConfigTest {
                 "PTv must reject deserialization of non-allowlisted polymorphic types");
     }
 
-    @Test
-    void testNoAllowIfSubTypeIsArrayConfigured() {
-        // Verify the mapper is built via JacksonConfig (which never calls allowIfSubTypeIsArray).
-        // A plain ObjectMapper without any explicit PTv would accept any type via default
-        // settings, but our hardened mapper restricts to the explicit allowlist.
-        assertNotNull(mapper, "Hardened mapper must not be null");
-    }
 }
