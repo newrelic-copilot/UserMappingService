@@ -50,7 +50,7 @@ public class FileOperations {
 //    }
 
     public static void useJackson() {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = JacksonConfig.createHardenedObjectMapper();
         UserWithIgnore user = new UserWithIgnore("Bob", 25, "secret");
         try {
             String json = mapper.writeValueAsString(user);
