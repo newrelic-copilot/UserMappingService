@@ -8,6 +8,7 @@ import org.apache.commons.collections4.map.LazyMap;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilder;
@@ -91,10 +92,9 @@ public class Main {
     }
 
     public static void fileUploadExample() {
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        File tempDir = new File(System.getProperty("java.io.tmpdir"));
-        factory.setRepository(tempDir);
-        System.out.println("File upload factory created.");
+        DiskFileItemFactory factory = FileUploadSupport.createDiskFileItemFactory();
+        ServletFileUpload upload = FileUploadSupport.createServletFileUpload(factory);
+        System.out.println("File upload factory created with request limit: " + upload.getSizeMax());
     }
 
     public static void useGuava() {
