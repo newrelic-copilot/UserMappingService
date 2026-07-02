@@ -8,8 +8,8 @@ import java.io.File;
 public final class FileUploadSupport {
     static final int MAX_PART_HEADER_SIZE_BYTES = 512;
     static final long MAX_FILE_COUNT = 10L;
-    static final long MAX_FILE_SIZE_BYTES = 1024 * 1024;
-    static final long MAX_REQUEST_SIZE_BYTES = 5L * 1024 * 1024;
+    static final long MAX_FILE_SIZE_BYTES = 1024L * 1024L;
+    static final long MAX_REQUEST_SIZE_BYTES = 5L * 1024L * 1024L;
     static final int FILE_SIZE_THRESHOLD_BYTES = 1024 * 1024;
 
     private FileUploadSupport() {
