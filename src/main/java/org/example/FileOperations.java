@@ -4,10 +4,10 @@ import Model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
-import java.io.File;
 import java.io.IOException;
 
 public class FileOperations {
@@ -29,10 +29,9 @@ public class FileOperations {
     }
 
     public static void fileUploadExample() {
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        File tempDir = new File(System.getProperty("java.io.tmpdir"));
-        factory.setRepository(tempDir);
-        System.out.println("File upload factory created.");
+        DiskFileItemFactory factory = FileUploadSupport.createDiskFileItemFactory();
+        ServletFileUpload upload = FileUploadSupport.createServletFileUpload(factory);
+        System.out.println("File upload factory created with request limit: " + upload.getSizeMax());
     }
 
 //    public static void useJackson() {
@@ -71,4 +70,3 @@ public class FileOperations {
         System.out.println("Spring's ObjectMapper created: " + springObjectMapper.getClass().getName());
     }
 }
-
