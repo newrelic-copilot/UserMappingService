@@ -32,6 +32,11 @@ class Log4jVersionTest {
                 () -> "Expected Log4j version to be at least 2.16.0 but was " + version);
     }
 
+    /**
+     * Compares a Log4j version string against a minimum semantic version.
+     * Non-numeric qualifiers such as "-rc1" or "-SNAPSHOT" are ignored after
+     * their numeric components are extracted, and missing components default to zero.
+     */
     private static boolean isAtLeast(String version, int major, int minor, int patch) {
         int[] parsed = {0, 0, 0};
         Matcher matcher = Pattern.compile("\\d+").matcher(version);

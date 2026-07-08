@@ -65,8 +65,9 @@ dependencies {
 
     implementation ("commons-net:commons-net:3.6")
 
-    testImplementation ("org.junit.jupiter:junit-jupiter-api")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    // Keep JUnit aligned with Spring Boot 2.5.10 so the Log4j regression test runs on a consistent platform.
+    testImplementation ("org.junit.jupiter:junit-jupiter-api:5.7.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
 }
 
 tasks.test {
