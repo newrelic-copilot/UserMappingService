@@ -11,6 +11,7 @@ group = "org.example"
 version = "1.0-SNAPSHOT"
 
 val log4jVersion = "2.17.2"
+val junitVersion = "5.7.2"
 
 configurations.configureEach {
     resolutionStrategy.eachDependency {
@@ -65,9 +66,9 @@ dependencies {
 
     implementation ("commons-net:commons-net:3.6")
 
-    // Keep JUnit aligned with Spring Boot 2.5.10 so the Log4j regression test runs on a consistent platform.
-    testImplementation ("org.junit.jupiter:junit-jupiter-api:5.7.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+    // Keep the regression test aligned with the Spring Boot-managed test platform used by this build.
+    testImplementation ("org.junit.jupiter:junit-jupiter-api:$junitVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 }
 
 tasks.test {
