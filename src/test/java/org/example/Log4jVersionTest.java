@@ -5,8 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,10 +33,13 @@ class Log4jVersionTest {
     }
 
     private static boolean isAtLeast(String version, int major, int minor, int patch) {
-        int[] parsed = Arrays.stream(version.split("[.-]"))
-                .limit(3)
-                .mapToInt(Integer::parseInt)
-                .toArray();
+        int[] parsed = {0, 0, 0};
+        Matcher matcher = Pattern.compile("\\d+").matcher(version);
+        int index = 0;
+
+        while (matcher.find() && index < parsed.length) {
+            parsed[index++] = Integer.parseInt(matcher.group());
+        }
 
         if (parsed[0] != major) {
             return parsed[0] > major;

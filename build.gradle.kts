@@ -11,7 +11,15 @@ group = "org.example"
 version = "1.0-SNAPSHOT"
 
 val log4jVersion = "2.17.2"
-extra["log4j2.version"] = log4jVersion
+
+configurations.configureEach {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "org.apache.logging.log4j") {
+            useVersion(log4jVersion)
+            because("Mitigate CVE-2021-44228 by forcing a patched Log4j version")
+        }
+    }
+}
 
 repositories {
     mavenCentral()
